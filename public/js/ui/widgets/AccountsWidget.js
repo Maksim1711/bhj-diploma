@@ -71,10 +71,7 @@ class AccountsWidget {
 	 * в боковой колонке
 	 * */
 	clear() {
-		const accounts = document.querySelectorAll("ul.accounts-panel li.account");
-		accounts.forEach((account) => {
-			account.remove();
-		});
+		[...this.element.querySelectorAll('.account')].forEach(item => item.remove());
 	};
 
 	/**

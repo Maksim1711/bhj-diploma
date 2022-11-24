@@ -18,12 +18,10 @@ class Sidebar {
 	 * при нажатии на кнопку .sidebar-toggle
 	 * */
 	static initToggleButton() {
-		const sidebarMini = document.querySelector(".sidebar-mini");
-		const sidebarToggle = sidebarMini.querySelector(".sidebar-toggle");
-		sidebarToggle.onclick = function () {
-			sidebarMini.classList.toggle("sidebar-open");
-			sidebarMini.classList.toggle("sidebar-collapse");
-		};
+		document.querySelector('a.sidebar-toggle').addEventListener('click', () => {
+			document.querySelector('body').classList.toggle('sidebar-open');
+			document.querySelector('body').classList.toggle('sidebar-collapse');
+		});
 	};
 
 	/**

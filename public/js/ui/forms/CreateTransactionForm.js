@@ -17,18 +17,15 @@ class CreateTransactionForm extends AsyncForm {
 	 * Обновляет в форме всплывающего окна выпадающий список
 	 * */
 	renderAccountsList() {
-		Account.list(
-			User.current(),
-			(err, response) => {
-				if (err) {
-					console.log(err);
-				} else if (response.success && response.data.length !== 0) {
-					this.element.querySelector(".accounts-select").innerHTML = "";
-					response.data.forEach((account) => {
-						this.element.querySelector(".accounts-select").innerHTML += `<option value=\"${account.id}\">${account.name}</option>`;
-					});
-				};
-			});
+		Account.list(User.current(), (err, response) => {
+			if (response.success) {
+				const select = this.element.querySelector('select');
+				select.innerHTML = '';
+				for (const option of response.data) {
+					select.innerHTML += `<option value="${option.id}">${option.name}</option>`;
+				}
+			}
+		});
 	}
 
 	/**
@@ -38,17 +35,13 @@ class CreateTransactionForm extends AsyncForm {
 	 * в котором находится форма
 	 * */
 	onSubmit(data) {
-		console.log(data)
-		Transaction.create(
-			data,
-			(err, response) => {
-				if (err) {
-					console.log(err);
-				} else if (response.success) {
-					App.pages.transactions.lastOptions.account_id = data.account_id;
-					App.update();
-					this.element.closest(".modal").style.display = "none";
-				};
-			});
+		Transaction.create(data, (err, response) => {
+			if (response.success) {
+				const regForm = new Modal(this.element.closest('.modal'));
+				regForm.close();
+				this.element.reset();
+				App.update();
+			}
+		});
 	}
 }

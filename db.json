@@ -5,6 +5,12 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "Maksim",
+      "email": "mul-ti@mail.ru",
+      "password": "Maksim1986",
+      "id": "1ayf9kddq8lavb6kl1"
     }
   ],
   "accounts": [
@@ -22,6 +28,36 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "ППП",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "id": "1ayf9kdczglavb81er"
+    },
+    {
+      "name": "банк",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "id": "1ayf9kdnklavb8h8v"
+    },
+    {
+      "name": "ттт",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "id": "1ayf9kd3qglavbazts"
+    },
+    {
+      "name": "магаз",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "id": "1ayf9kdfzglavbbb48"
+    },
+    {
+      "name": "фин",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "id": "1ayf9kdgqclavbc3ks"
+    },
+    {
+      "name": "фигвгвг",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "id": "1ayf9kdcw0lavbcnps"
     }
   ],
   "transactions": [
@@ -159,6 +195,60 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "1ayf9kd17glavb8q4v",
+      "type": "expense",
+      "name": "ЗП",
+      "sum": 3000,
+      "account_id": "1ayf9kdnklavb8h8v",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "created_at": "2022-11-24T16:50:03.726Z"
+    },
+    {
+      "id": "1ayf9kd75clavba9di",
+      "type": "income",
+      "name": "ЗП",
+      "sum": 30000,
+      "account_id": "1ayf9kdczglavb81er",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "created_at": "2022-11-24T16:51:15.317Z"
+    },
+    {
+      "id": "1ayf9kdcr4lavbblr1",
+      "type": "expense",
+      "name": "вв",
+      "sum": 444,
+      "account_id": "1ayf9kdfzglavbbb48",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "created_at": "2022-11-24T16:52:18.012Z"
+    },
+    {
+      "id": "1ayf9kdhbwlavbccnj",
+      "type": "income",
+      "name": "ц",
+      "sum": 43333,
+      "account_id": "1ayf9kdgqclavbc3ks",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "created_at": "2022-11-24T16:52:52.878Z"
+    },
+    {
+      "id": "1ayf9kdgaslavbcuph",
+      "type": "expense",
+      "name": "ф",
+      "sum": 11111,
+      "account_id": "1ayf9kdcw0lavbcnps",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "created_at": "2022-11-24T16:53:16.276Z"
+    },
+    {
+      "id": "1ayf9kdf9slavbdvp7",
+      "type": "income",
+      "name": "ЗП",
+      "sum": 20000,
+      "account_id": "1ayf9kd3qglavbazts",
+      "user_id": "1ayf9kddq8lavb6kl1",
+      "created_at": "2022-11-24T16:54:04.218Z"
     }
   ]
 }

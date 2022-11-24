@@ -13,24 +13,22 @@ class AsyncForm {
 	 * через registerEvents()
 	 * */
 	constructor(element) {
-		if (element) {
-			this.element = element;
-			this.registerEvents();
-		} else {
+		if (!element) {
 			throw new Error("Ошибка, форма не существует");
-		};
+		}
+		this.element = element;
+		this.registerEvents();
 	};
 	/**
 	 * Необходимо запретить отправку формы и в момент отправки
 	 * вызывает метод submit()
 	 * */
 	registerEvents() {
-		this.element.onsubmit = e => {
+		this.element.addEventListener('submit', (e) => {
 			e.preventDefault();
-			this.submit();
-			this.element.reset();// сразу сбрасывает (очищает) форму !!! Это если нам нужно чтобы все формы сразу очищались после отправки данных, иначе - каждой форме отдельно в методе onSubmit(options) задавать или не задавать очистку формы.
-		};
-	}
+			this.submit();// сразу сбрасывает (очищает) форму !!! Это если нам нужно чтобы все формы сразу очищались после отправки данных, иначе - каждой форме отдельно в методе onSubmit(options) задавать или не задавать очистку формы.
+		});
+	};
 
 	/**
 	 * Преобразует данные формы в объект вида
@@ -40,16 +38,14 @@ class AsyncForm {
 	 * }
 	 * */
 	getData() {
-		const data = {};
 		const formData = new FormData(this.element);
-		const entries = formData.entries();
-		for (let item of entries) {
-			let key = item[0];
-			let value = item[1];
-			data[key] = `${value}`;
-		};
+		const data = {};
+		for (let [name, value] of formData) {
+			data[name] = value;
+		}
 		return data;
-	};
+	}
+
 	onSubmit(options) {
 	};
 

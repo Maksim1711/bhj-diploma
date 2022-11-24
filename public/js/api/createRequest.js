@@ -3,37 +3,50 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-	let formData = new FormData();
-	if (options.method.toUpperCase() != 'GET') {
-		for (let field in options.data) {
-			formData.append(field, options.data[field]);
+	const f = function () { },
+		{
+			url = '',
+			method = 'GET',
+			callback = f,
+			responseType = '',
+			async = true,
+			data = {}
+		} = options,
+		xhr = new XMLHttpRequest;
+
+	const formData = new FormData;
+	let params = '';
+
+	if (method === 'GET') {
+		for (param in data) {
+			params += param + '=' + data[param] + '&';
 		}
+		params = '/?' + params.slice(0, -1);
 	} else {
-		let param = '';
-		let arr = [];
-		for (let field in options.data) {
-			arr.push(field + '=' + options.data[field]);
+		for (param in data) {
+			formData.append(param, data[param]);
 		}
-		param = arr.join('&');
-		options.url = options.url + '?' + param;
 	}
-	let xhr = new XMLHttpRequest();
-	xhr.responseType = 'json';
+
 	try {
-		xhr.open(options.method, options.url);
+		xhr.open(method, url + params);
+		xhr.responseType = responseType;
+		xhr.withCredentials = true;
 		xhr.send(formData);
+	} catch (err) {
+		callback(err);
 	}
-	catch (e) {
-		options.callback(e);
-	}
-	xhr.onload = function () {
-		let response = null;
-		let error = null;
-		if (xhr.status != 200) {
-			error = xhr.statusText;
-		} else {
-			response = xhr.response;
+
+	xhr.addEventListener('readystatechange', () => {
+		if (xhr.readyState === xhr.DONE && xhr.status == 200) {
+
+			if (!xhr.response.success) {
+				callback(xhr.response.error, xhr.response);
+			} else {
+				callback(null, xhr.response);
+			}
+
 		}
-		options.callback(error, response);
-	}
+	});
+
 };
